@@ -21,7 +21,6 @@ public class SpriteReader {
 				try {
 					return image.getSubimage(x,y,width,height);
 				} catch (Exception e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}

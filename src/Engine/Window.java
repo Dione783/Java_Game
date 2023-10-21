@@ -23,7 +23,7 @@ public class Window extends Canvas{
 	public Window() {
 		gameObjects = new GameObjects();
 		Toolkit tk = Toolkit.getDefaultToolkit();
-		frame = new JFrame("Window Game");
+		frame = new JFrame("Window Game #1");
 		dimension = tk.getScreenSize();
 		frame.setPreferredSize(dimension);
 		frame.setResizable(true);
@@ -50,10 +50,11 @@ public class Window extends Canvas{
 			return;
 		}
 		g = canvas.getGraphics();
-		
 		g.setColor(Color.green);
 		g.fillRect(0,0,WIDTH,HEIGHT);
+		
 		GameObjects.render(g);
+		
 		g = bs.getDrawGraphics();
 		g.drawImage(canvas,0,0,WIDTH,HEIGHT,null);
 		bs.show();

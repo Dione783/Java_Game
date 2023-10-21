@@ -1,7 +1,12 @@
 package Entities;
 
-public abstract class Position {
+public class Position {
+	
 	private int x,y;
+	
+	public Position() {
+		
+	}
 	
 	public int getX() {
 		return x-Camera.x;
