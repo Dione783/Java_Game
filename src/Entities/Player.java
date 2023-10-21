@@ -11,6 +11,7 @@ public class Player extends Entitie{
 	private BufferedImage[] spritesDown,spritesLeft,spritesRight,spritesUp;
 	private SpriteReader sprite;
 	private SpritesheetCreator spriteCreatorPlayer;
+	private boolean right,left,top,down;
 	
 	public Player() {
 		super(400,400);
@@ -34,7 +35,48 @@ public class Player extends Entitie{
 
 	@Override
 	public void render(Graphics g) {
-		g.drawImage(spritesUp[frame.getIndex()],position.getX(),position.getY(),16,32,null);
+		if(top) {
+			g.drawImage(spritesUp[frame.getIndex()],position.getX(),position.getY(),16,32,null);
+		}else if(down){
+			g.drawImage(spritesDown[frame.getIndex()],position.getX(),position.getY(),16,32,null);
+		}else if(right) {
+			g.drawImage(spritesRight[frame.getIndex()],position.getX(),position.getY(),16,32,null);
+		}else if(left) {
+			g.drawImage(spritesLeft[frame.getIndex()],position.getX(),position.getY(),16,32,null);
+		}else {
+			g.drawImage(spritesDown[0],position.getX(),position.getY(),16,32,null);
+		}
 	}
-	
+
+	public boolean isRight() {
+		return right;
+	}
+
+	public void setRight(boolean right) {
+		this.right = right;
+	}
+
+	public boolean isLeft() {
+		return left;
+	}
+
+	public void setLeft(boolean left) {
+		this.left = left;
+	}
+
+	public boolean isTop() {
+		return top;
+	}
+
+	public void setTop(boolean top) {
+		this.top = top;
+	}
+
+	public boolean isDown() {
+		return down;
+	}
+
+	public void setDown(boolean down) {
+		this.down = down;
+	}
 }

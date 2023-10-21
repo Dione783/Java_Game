@@ -6,7 +6,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 public class Inputs implements KeyListener,MouseListener{
-
+	
 	@Override
 	public void keyTyped(KeyEvent e) {
 		
@@ -14,7 +14,11 @@ public class Inputs implements KeyListener,MouseListener{
 
 	@Override
 	public void keyPressed(KeyEvent e) {
-		
+		if(e.getKeyCode() == KeyEvent.VK_A) {
+			System.out.println();
+		}else if(e.getKeyCode() == KeyEvent.VK_D) {
+			System.out.println();
+		}
 	}
 
 	@Override

@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Toolkit;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.awt.Canvas;
@@ -11,17 +13,16 @@ import javax.swing.JFrame;
 import javax.swing.WindowConstants;
 
 import Entities.GameObjects;
+import Entities.Player;
 
 public class Window extends Canvas{
 	private static final long serialVersionUID = 1L;
 	private JFrame frame;
-	private static int WIDTH,HEIGHT;
-	private static BufferedImage canvas;
-	private static Dimension dimension;
-	private GameObjects gameObjects;
+	private int WIDTH,HEIGHT;
+	private BufferedImage canvas;
+	private Dimension dimension;
 
 	public Window() {
-		gameObjects = new GameObjects();
 		Toolkit tk = Toolkit.getDefaultToolkit();
 		frame = new JFrame("Window Game #1");
 		dimension = tk.getScreenSize();
@@ -36,9 +37,11 @@ public class Window extends Canvas{
 		WIDTH = frame.getWidth();
 		HEIGHT = frame.getHeight();
 		canvas = new BufferedImage(WIDTH,HEIGHT,BufferedImage.TYPE_INT_ARGB);
+		GameObjects.init();
 	}
 	
-	public static void update() {
+	
+	public void update() {
 		GameObjects.update();
 	}
 	
@@ -59,5 +62,4 @@ public class Window extends Canvas{
 		g.drawImage(canvas,0,0,WIDTH,HEIGHT,null);
 		bs.show();
 	}
-	
 }

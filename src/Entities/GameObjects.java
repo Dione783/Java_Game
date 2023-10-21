@@ -9,9 +9,7 @@ public class GameObjects {
 	private static List<Entitie> objects;
 
 	public GameObjects() {
-		objects = new ArrayList<Entitie>();
-		player = new Player();
-		objects.add(player);
+		
 	}
 	
 	public static void update() {
@@ -24,6 +22,20 @@ public class GameObjects {
 		for(Entitie e : objects) {
 			e.render(g);
 		}
+	}
+	
+	public static void init() {
+		objects = new ArrayList<Entitie>();
+		player = new Player();
+		objects.add(getPlayer());
+	}
+
+	public static Player getPlayer() {
+		return player;
+	}
+	
+	public static void addEntity() {
+		
 	}
 	
 }

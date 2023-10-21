@@ -1,21 +1,26 @@
 package Engine;
 
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
-public class GameEngine implements Runnable{
+import Entities.GameObjects;
+
+public class GameEngine implements Runnable,KeyListener{
 
 	private Thread thread;
 	private boolean isRunning;
-	private static Window window;
+	private Window window;
 	
 	public GameEngine() {
 		window = new Window();
 		start();
+		window.addKeyListener(this);
 	}
 	
 	private synchronized void start()
 	{
 		thread = new Thread(this);
-		isRunning=true;
+		isRunning = true;
 		thread.start();
 	}
 	
@@ -43,18 +48,55 @@ public class GameEngine implements Runnable{
 			delta+=(now - lastTime) / ns;
 			lastTime = now;
 			if(delta >= 1) {
-				Window.update();
+				window.update();
 				window.paint(null);
 				frames++;
 				delta--;
 			}
 			
 			if(System.currentTimeMillis() - timer >= 1000){
-				System.out.println(frames);
 				frames=0;
 				timer+=1000;
 			}
 		}
 		stop();
+	}
+
+	@Override
+	public void keyTyped(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		// TODO Auto-generated method stub
+		if(e.getKeyCode() == KeyEvent.VK_A) {
+			GameObjects.getPlayer().setLeft(true);
+		}else if(e.getKeyCode() == KeyEvent.VK_D) {
+			GameObjects.getPlayer().setRight(true);
+		}
+		
+		if(e.getKeyCode() == KeyEvent.VK_W) {
+			GameObjects.getPlayer().setTop(true);
+		}else if(e.getKeyCode() == KeyEvent.VK_S) {
+			GameObjects.getPlayer().setDown(true);
+		}
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+		// TODO Auto-generated method stub
+		if(e.getKeyCode() == KeyEvent.VK_A) {
+			GameObjects.getPlayer().setLeft(false);
+		}else if(e.getKeyCode() == KeyEvent.VK_D) {
+			GameObjects.getPlayer().setRight(false);
+		}
+		
+		if(e.getKeyCode() == KeyEvent.VK_W) {
+			GameObjects.getPlayer().setTop(false);
+		}else if(e.getKeyCode() == KeyEvent.VK_S) {
+			GameObjects.getPlayer().setDown(false);
+		}
 	}
 }
