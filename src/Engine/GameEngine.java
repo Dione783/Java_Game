@@ -2,7 +2,6 @@ package Engine;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-
 import Entities.GameObjects;
 
 public class GameEngine implements Runnable,KeyListener{
@@ -13,21 +12,21 @@ public class GameEngine implements Runnable,KeyListener{
 	
 	public GameEngine() {
 		window = new Window();
-		start();
 		window.addKeyListener(this);
+		start();
 	}
 	
-	private synchronized void start()
+	public synchronized void start()
 	{
 		thread = new Thread(this);
-		isRunning = true;
 		thread.start();
+		isRunning = true;
 	}
 	
-	private synchronized void stop()
+	public synchronized void stop()
 	{
-		isRunning=false;
 		try {
+			isRunning=false;
 			thread.join();
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
@@ -48,10 +47,10 @@ public class GameEngine implements Runnable,KeyListener{
 			delta+=(now - lastTime) / ns;
 			lastTime = now;
 			if(delta >= 1) {
-				window.update();
-				window.paint(null);
 				frames++;
 				delta--;
+				window.update();
+				window.paint(null);
 			}
 			
 			if(System.currentTimeMillis() - timer >= 1000){

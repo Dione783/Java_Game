@@ -2,26 +2,35 @@ package Entities;
 
 public class Position {
 	
-	private int x,y;
+	private double x;
+	private double y;
 	
 	public Position() {
 		
 	}
 	
-	public int getX() {
-		return x-Camera.x;
+	public double getX() {
+		return x;
 	}
 
-	public void setX(int x) {
-		this.x=x-Camera.x;
+	public void setX(double d) {
+		this.x=d;
 	}
 
-	public int getY() {
-		return y-Camera.y;
+	public double getY() {
+		return y;
+	}
+	
+	public double getXRender() {
+		return x-Camera.getX();
+	}
+	
+	public double getYRender() {
+		return y-Camera.getY();
 	}
 
-	public void setY(int y) {
-		this.y = y-Camera.y;
+	public void setY(double d) {
+		this.y = d;
 	}
 	
 	

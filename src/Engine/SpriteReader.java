@@ -26,4 +26,15 @@ public class SpriteReader {
 			}
 			return null;
 		}
+		
+		public BufferedImage getImage() {
+			if(image != null) {
+				try {
+					return image;
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+			return null;
+		}
 }

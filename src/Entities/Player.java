@@ -6,15 +6,21 @@ import java.awt.image.BufferedImage;
 import Engine.Frames;
 import Engine.SpriteReader;
 import Engine.SpritesheetCreator;
+import Engine.Window;
 
-public class Player extends Entitie{
+public class Player extends Entity{
 	private BufferedImage[] spritesDown,spritesLeft,spritesRight,spritesUp;
 	private SpriteReader sprite;
 	private SpritesheetCreator spriteCreatorPlayer;
-	private boolean right,left,top,down;
 	
-	public Player() {
-		super(400,400);
+	public Player(int x,int y,int width,int height) {
+		super(x,y,width,height);
+		position = new Position();
+		position.setX(x);
+		position.setY(y);
+		velocity=1;
+		life=8;
+		maxLife=8;
 		spritesDown = new BufferedImage[9];
 		spritesUp = new BufferedImage[9];
 		spritesLeft = new BufferedImage[9];
@@ -31,52 +37,35 @@ public class Player extends Entitie{
 	@Override
 	public void update() {
 		frame.update();
+		if(right) {
+			position.setX(position.getX()+velocity);
+		}else if(left) {
+			position.setX(position.getX()-velocity);
+		}
+		if(top) {
+			position.setY(position.getY()-velocity);
+		}else if(down) {
+			position.setY(position.getY()+velocity);
+		}
+		if(life <= 0) {
+			life=0;
+		}
+		Camera.setX((int)((position.getX())-(Window.WIDTH/4)));
+		Camera.setY((int)((position.getY())-(Window.HEIGHT/4)));
 	}
 
 	@Override
 	public void render(Graphics g) {
 		if(top) {
-			g.drawImage(spritesUp[frame.getIndex()],position.getX(),position.getY(),16,32,null);
+			g.drawImage(spritesUp[frame.getIndex()],(int)position.getXRender(),(int)position.getYRender(),16,32,null);
 		}else if(down){
-			g.drawImage(spritesDown[frame.getIndex()],position.getX(),position.getY(),16,32,null);
+			g.drawImage(spritesDown[frame.getIndex()],(int)position.getXRender(),(int)position.getYRender(),16,32,null);
 		}else if(right) {
-			g.drawImage(spritesRight[frame.getIndex()],position.getX(),position.getY(),16,32,null);
+			g.drawImage(spritesRight[frame.getIndex()],(int)position.getXRender(),(int)position.getYRender(),16,32,null);
 		}else if(left) {
-			g.drawImage(spritesLeft[frame.getIndex()],position.getX(),position.getY(),16,32,null);
+			g.drawImage(spritesLeft[frame.getIndex()],(int)position.getXRender(),(int)position.getYRender(),16,32,null);
 		}else {
-			g.drawImage(spritesDown[0],position.getX(),position.getY(),16,32,null);
+			g.drawImage(spritesDown[0],(int)position.getXRender(),(int)position.getYRender(),16,32,null);
 		}
-	}
-
-	public boolean isRight() {
-		return right;
-	}
-
-	public void setRight(boolean right) {
-		this.right = right;
-	}
-
-	public boolean isLeft() {
-		return left;
-	}
-
-	public void setLeft(boolean left) {
-		this.left = left;
-	}
-
-	public boolean isTop() {
-		return top;
-	}
-
-	public void setTop(boolean top) {
-		this.top = top;
-	}
-
-	public boolean isDown() {
-		return down;
-	}
-
-	public void setDown(boolean down) {
-		this.down = down;
 	}
 }

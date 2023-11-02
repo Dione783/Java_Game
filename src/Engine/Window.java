@@ -4,28 +4,28 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Toolkit;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.awt.Canvas;
 import javax.swing.JFrame;
 import javax.swing.WindowConstants;
-
 import Entities.GameObjects;
-import Entities.Player;
+import Entities.UI;
+import Entities.World;
 
 public class Window extends Canvas{
 	private static final long serialVersionUID = 1L;
 	private JFrame frame;
-	private int WIDTH,HEIGHT;
+	public static int WIDTH,HEIGHT,SCALE;
 	private BufferedImage canvas;
 	private Dimension dimension;
-
+	private GameObjects objects;
+	private World world;
+	
 	public Window() {
 		Toolkit tk = Toolkit.getDefaultToolkit();
-		frame = new JFrame("Window Game #1");
 		dimension = tk.getScreenSize();
+		frame = new JFrame("Window Game #1");
 		frame.setPreferredSize(dimension);
 		frame.setResizable(true);
 		frame.add(this);
@@ -34,18 +34,20 @@ public class Window extends Canvas{
 		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		frame.setVisible(true);
+		SCALE = 2;
 		WIDTH = frame.getWidth();
 		HEIGHT = frame.getHeight();
 		canvas = new BufferedImage(WIDTH,HEIGHT,BufferedImage.TYPE_INT_ARGB);
-		GameObjects.init();
+		objects = new GameObjects();
+		world = new World(dimension.getWidth(),dimension.getHeight());
 	}
-	
 	
 	public void update() {
+		world.update();
 		GameObjects.update();
+		UI.update();
 	}
 	
-
 	public void paint(Graphics g) {
 		BufferStrategy bs = this.getBufferStrategy();
 		if(bs == null) {
@@ -53,13 +55,19 @@ public class Window extends Canvas{
 			return;
 		}
 		g = canvas.getGraphics();
-		g.setColor(Color.green);
+		g.setColor(Color.black);
 		g.fillRect(0,0,WIDTH,HEIGHT);
 		
+		if(world == null) {
+			return;
+		}
+		
+		world.render(g);
 		GameObjects.render(g);
+		UI.render(g);
 		
 		g = bs.getDrawGraphics();
-		g.drawImage(canvas,0,0,WIDTH,HEIGHT,null);
+		g.drawImage(canvas,0,0,WIDTH*SCALE,HEIGHT*SCALE,null);
 		bs.show();
 	}
 }

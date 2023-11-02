@@ -6,36 +6,33 @@ import java.util.List;
 
 public class GameObjects {
 	private static Player player;
-	private static List<Entitie> objects;
-
+	private static List<Entity> objects;
+	
 	public GameObjects() {
-		
+		objects = new ArrayList<Entity>();
+		player = new Player(0,0,16,32);
+		objects.add(new Bizzz(20,20,16,32));
+		objects.add(player);
 	}
 	
 	public static void update() {
-		for(Entitie e : objects) {
+		for(Entity e : objects) {
 			e.update();
 		}
 	}
 	
 	public static void render(Graphics g) {
-		for(Entitie e : objects) {
+		for(Entity e : objects) {
 			e.render(g);
 		}
 	}
 	
-	public static void init() {
-		objects = new ArrayList<Entitie>();
-		player = new Player();
-		objects.add(getPlayer());
-	}
-
 	public static Player getPlayer() {
 		return player;
 	}
 	
-	public static void addEntity() {
-		
+	public static void addEntity(Entity e) {
+		objects.add(e);
 	}
 	
 }
