@@ -4,7 +4,7 @@ import java.awt.image.BufferedImage;
 
 public class SpritesheetCreator {
 	private SpriteReader image;
-	BufferedImage[] sprite;
+	private BufferedImage[] sprite;
 	private int width,height;
 	
 	public SpritesheetCreator(SpriteReader image,int width,int height) {
@@ -14,7 +14,7 @@ public class SpritesheetCreator {
 	}
 	
 	public BufferedImage[] createSprite(int x,int y,int numberOfFramesX,int numberOfFramesY) {
-		 sprite = new BufferedImage[numberOfFramesX+numberOfFramesY];
+		sprite = new BufferedImage[numberOfFramesX+numberOfFramesY];
 		if(numberOfFramesX > 0) {
 			for(int i=0;i < sprite.length;i++) {
 				sprite[i] = image.getSprite(x+(i*width),y, width, height);
@@ -23,6 +23,16 @@ public class SpritesheetCreator {
 		if(numberOfFramesY > 0){
 			for(int i=0;i < sprite.length;i++) {
 				sprite[i] = image.getSprite(x,y+(i*height), width, height);
+			}
+		}
+		return sprite;
+	}
+	
+	public BufferedImage[][] getAll(int size) {
+		BufferedImage[][] sprite = new BufferedImage[size][size];
+		for(int i=0;i < sprite.length;i++) {
+			for(int j=0;j < sprite[0].length;j++) {
+				sprite[i][j] = image.getSprite(j*width,i*height,width,height);
 			}
 		}
 		return sprite;

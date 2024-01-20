@@ -10,8 +10,16 @@ public class World {
 	private SpriteReader image;
 	private int WIDTH,HEIGHT;
 	
+	public int getWIDTH() {
+		return WIDTH;
+	}
+
+	public int getHEIGHT() {
+		return HEIGHT;
+	}
+
 	public World(double width,double height) {
-		image = new SpriteReader("/Map.png");
+		image = new SpriteReader("/Mapa_1.png");
 		WIDTH = image.getImage().getWidth();
 		HEIGHT = image.getImage().getHeight();
 		int[] pixels = new int[WIDTH*HEIGHT];
@@ -20,14 +28,16 @@ public class World {
 			for(int xx=0;xx < WIDTH;xx++) {
 				for(int yy=0;yy < HEIGHT;yy++) {
 					int pixel = pixels[xx+(yy*WIDTH)];
-					if(pixel == 0xff3f3f74) {
+					if(pixel == 0xfff5f7fa) {
 						tiles.add(new Ground(xx*16,yy*16,16,16));
-					}else if(pixel == 0xff4b692f){
+					}else if(pixel == 0xff000000){
 						tiles.add(new Wall(xx*16,yy*16,16,16));
 					}else if(pixel == 0xff3600ff) {
 						tiles.add(new Ground(xx*16,yy*16,16,16));
 						GameObjects.getPlayer().position.setX(xx*16);
 						GameObjects.getPlayer().position.setY(yy*16);
+					}else if(pixel == 0xffff0000) {
+						tiles.add(new Ground(xx*16,yy*16,16,16));
 					}
 				}
 			}
@@ -42,8 +52,12 @@ public class World {
 			t.render(g);
 		}
 	}
-
+	
+	public void checkWorld() {
+		GameObjects.getPlayer().collisionTile(tiles,WIDTH,HEIGHT);
+	}
+	
 	public void update() {
-		
+		checkWorld();
 	}
 }

@@ -11,6 +11,7 @@ public class Wall extends Tile{
 	
 	
 	public void render(Graphics g) {
-		g.drawImage(tile[1],(int)position.getXRender(),(int)position.getYRender(),16,16,null);
+		g.drawImage(tile[3][0],(int)position.getXRender(),(int)position.getYRender(),16,16,null);
 	}
+	
 }

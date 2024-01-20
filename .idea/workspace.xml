@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="87d78ace-6d77-48d3-b713-f9866529a547" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/bin/Engine/SpritesheetCreator.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Engine/SpritesheetCreator.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Entities/Entity.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Entities/Entity.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Entities/GameObjects.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Entities/GameObjects.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Entities/Ground.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Entities/Ground.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Entities/Player.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Entities/Player.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Entities/Tile.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Entities/Tile.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Entities/Wall.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Entities/Wall.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Entities/World.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Entities/World.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Map.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sprites/Map.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Engine/SpritesheetCreator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Engine/SpritesheetCreator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entities/Entity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entities/Entity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entities/GameObjects.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entities/GameObjects.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entities/Ground.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entities/Ground.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entities/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entities/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entities/Tile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entities/Tile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entities/Wall.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entities/Wall.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entities/World.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entities/World.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 4
+}]]></component>
+  <component name="ProjectId" id="2YE75hQsuvrtKMdN93f0vTfY6pS" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "master",
+    "last_opened_file_path": "D:/Java projects"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="87d78ace-6d77-48d3-b713-f9866529a547" name="Changes" comment="" />
+      <created>1700078703407</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1700078703407</updated>
+    </task>
+    <servers />
+  </component>
+</project>

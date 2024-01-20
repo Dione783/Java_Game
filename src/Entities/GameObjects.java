@@ -10,7 +10,7 @@ public class GameObjects {
 	
 	public GameObjects() {
 		objects = new ArrayList<Entity>();
-		player = new Player(0,0,16,32);
+		player = new Player(100,100,16,32);
 		objects.add(new Bizzz(20,20,16,32));
 		objects.add(player);
 	}
@@ -28,7 +28,7 @@ public class GameObjects {
 	}
 	
 	public static Player getPlayer() {
-		return player;
+		return GameObjects.player;
 	}
 	
 	public static void addEntity(Entity e) {
