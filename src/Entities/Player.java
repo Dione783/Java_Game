@@ -2,7 +2,6 @@ package Entities;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.util.List;
 
@@ -16,6 +15,7 @@ public class Player extends Entity{
 	private SpriteReader sprite;
 	private double xnext,ynext;
 	private SpritesheetCreator spriteCreatorPlayer;
+	private boolean isFree;
 
 	public Player(int x,int y,int width,int height) {
 		super(x,y,width,height);
@@ -48,7 +48,7 @@ public class Player extends Entity{
 			}
 			if(top && isFreeTop) {
 				position.setY(position.getY()-velocity);
-			}else if(down && (isFreeDown)) {
+			}else if(down && isFreeDown) {
 				position.setY(position.getY()+velocity);
 			}
 		if(life <= 0) {
@@ -75,16 +75,16 @@ public class Player extends Entity{
 		}
 	}
 	
-	public void collisionTile(List<Tile> tile,int width,int height) {
+	public void collisionTile(Tile[] tile,int width,int height,boolean right,boolean left,boolean top,boolean down) {
 		if(right) {
-			xnext=velocity;
-		}else if(left) {
-			xnext=-velocity;
+			xnext=this.position.getX()+velocity;
+		}else if(left){
+			xnext=this.position.getX()-velocity;
 		}
 		if(top) {
-			ynext=-velocity;
+			ynext=this.position.getY()-velocity;
 		}else if(down) {
-			ynext=velocity;
+			ynext=this.position.getY()+velocity;
 		}
 		int x1 = (int) (xnext / 16);
 		int y1 = (int) (ynext / 16);
@@ -93,21 +93,36 @@ public class Player extends Entity{
 		int y2 = (int) (ynext / 16);
 		
 		int x3 = (int) (xnext / 16);
-		int y3 = (int) ((ynext+16-1) / 16);
+		int y3 = (int) ((ynext+32-1) / 16);
 		
 		int x4 = (int) ((xnext+16-1) / 16);
-		int y4 = (int) ((ynext+16-1) / 16);
+		int y4 = (int) ((ynext+32-1) / 16);
 		
-		if(tile.get(x1 + (y1*width)) instanceof Wall) { 
-			
-		}
-		if(tile.get(x2 + (y2*width)) instanceof Wall) {
-			
-		}
-		if(tile.get(x3 + (y3*width)) instanceof Wall) {
-			
-		}
-		if((tile.get(x4 + (y4*width)) instanceof Ground)) {
+		int x5 = (int) ((xnext+16-1) / 16);
+		int y5 = (int) ((ynext+16-1) / 16);
+		
+		int x6 = (int) ((xnext) / 16);
+		int y6 = (int) ((ynext+16-1) / 16);
+		
+		if(tile[(x1+(y1*width))] instanceof Wall || tile[(x2+(y2*width))] instanceof Wall || tile[(x3+(y3*width))] instanceof Wall || tile[(x4+(y4*width))] instanceof Wall || tile[(x5+(y5*width))] instanceof Wall || tile[(x6+(y6*width))] instanceof Wall) {
+			System.out.println("X:"+tile[(x1+(y1*width))].position.getX());
+			System.out.println("Y:"+tile[(x1+(y1*width))].position.getY());
+			System.out.println("Player X:"+this.position.getX());
+			System.out.println("Player Y:"+this.position.getY());
+			if(right) {
+				isFreeRight=false;
+			}else if(left){
+				isFreeLeft=false;
+			}
+			if(top) {
+				isFreeTop=false;
+			}else if(down) {
+				isFreeDown=false;
+			}
+		}else {
+			isFreeRight=true;
+			isFreeLeft=true;
+			isFreeTop=true;
 			isFreeDown=true;
 		}
 	}

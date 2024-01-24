@@ -6,7 +6,7 @@ import java.util.List;
 import Engine.SpriteReader;
 
 public class World {
-	private List<Tile> tiles;
+	private Tile[] tiles;
 	private SpriteReader image;
 	private int WIDTH,HEIGHT;
 	
@@ -21,23 +21,24 @@ public class World {
 	public World(double width,double height) {
 		image = new SpriteReader("/Mapa_1.png");
 		WIDTH = image.getImage().getWidth();
+		System.out.println(WIDTH);
 		HEIGHT = image.getImage().getHeight();
 		int[] pixels = new int[WIDTH*HEIGHT];
 		image.getImage().getRGB(0,0,WIDTH,HEIGHT,pixels,0,WIDTH);
-		tiles = new ArrayList<Tile>();
+		tiles = new Tile[WIDTH*HEIGHT];
 			for(int xx=0;xx < WIDTH;xx++) {
 				for(int yy=0;yy < HEIGHT;yy++) {
 					int pixel = pixels[xx+(yy*WIDTH)];
 					if(pixel == 0xfff5f7fa) {
-						tiles.add(new Ground(xx*16,yy*16,16,16));
+						tiles[xx+(yy*WIDTH)] = new Ground(xx*16,yy*16,16,16);
 					}else if(pixel == 0xff000000){
-						tiles.add(new Wall(xx*16,yy*16,16,16));
+						tiles[xx+(yy*WIDTH)] = new Wall(xx*16,yy*16,16,16);
 					}else if(pixel == 0xff3600ff) {
-						tiles.add(new Ground(xx*16,yy*16,16,16));
+						tiles[xx+(yy*WIDTH)] = new Ground(xx*16,yy*16,16,16);
 						GameObjects.getPlayer().position.setX(xx*16);
 						GameObjects.getPlayer().position.setY(yy*16);
 					}else if(pixel == 0xffff0000) {
-						tiles.add(new Ground(xx*16,yy*16,16,16));
+						tiles[xx+(yy*WIDTH)] = new Ground(xx*16,yy*16,16,16);
 					}
 				}
 			}
@@ -54,7 +55,7 @@ public class World {
 	}
 	
 	public void checkWorld() {
-		GameObjects.getPlayer().collisionTile(tiles,WIDTH,HEIGHT);
+		GameObjects.getPlayer().collisionTile(tiles,WIDTH,HEIGHT,GameObjects.getPlayer().isRight(),GameObjects.getPlayer().isLeft(),GameObjects.getPlayer().isTop(),GameObjects.getPlayer().isDown());
 	}
 	
 	public void update() {

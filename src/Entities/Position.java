@@ -18,10 +18,12 @@ public class Position {
 	}
 
 	public double getY() {
+		System.out.println("Camera X:"+Camera.getX());
 		return y;
 	}
 	
 	public double getXRender() {
+		
 		return x-Camera.getX();
 	}
 	
